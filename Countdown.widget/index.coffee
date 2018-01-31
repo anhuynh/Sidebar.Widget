@@ -7,9 +7,11 @@ options =
   widgetEnable: true
 
   # Set the start date to count from.
-  theDate     : "10/29/2012"
+  theDate: "03/30/2018"
 
-command: "osascript 'Sidebar.widget/Time Elapsed.widget/Time Elapsed.applescript' \"#{options.theDate}\""
+  title: ""
+
+command: "osascript 'Sidebar.widget/Countdown.widget/Countdown.applescript' \"#{options.theDate}\""
 
 refreshFrequency: '1h'
 
@@ -33,13 +35,14 @@ style: """
     color white
     padding 8px
     align-items center
+    justify-content center
     display flex
 
   .box
-    width 33%
     float left
     text-align center
     color white05
+    margin 0 10px
 
   .box span
     display block
@@ -47,6 +50,13 @@ style: """
   .box span:first-of-type
     font-weight 700
     color white
+
+  #title
+    color white
+    font-size 8pt
+    text-align center
+    display block
+    padding-bottom 2px
 """
 
 options : options
@@ -61,20 +71,20 @@ render: (output) ->
 
   # Create the DIVs for each piece of data.
   elapsedHTML = "
-    <div class='wrapper'>
-      <div class='box'>
-        <span>" + values[0] + "</span>
-        <span>" + values[1] + "</span>
+    <div>
+      <span id='title'>" + @options.title + "</span>
+      <div class='wrapper'>
+        <div class='box'>
+          <span>" + values[2] + "</span>
+          <span>" + values[3] + "</span>
+        </div>
+        <div class='box'>
+          <span>" + values[4] + "</span>
+          <span>" + values[5] + "</span>
+        </div>
       </div>
-      <div class='box'>
-        <span>" + values[2] + "</span>
-        <span>" + values[3] + "</span>
-      </div>
-      <div class='box'>
-        <span>" + values[4] + "</span>
-        <span>" + values[5] + "</span>
-      </div>
-    </div>"
+    </div>
+  "
   return elapsedHTML
 
 # Update the rendered output.

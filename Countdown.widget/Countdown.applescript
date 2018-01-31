@@ -7,9 +7,9 @@ on run (argument)
 	set {year:y, month:m, day:d} to theDate
 	set {year:cy, month:cm, day:cd} to current date
 
-	set aYear to cy - y
-	set aMonth to cm - m
-	set aDay to cd - d
+	set aYear to y - cy
+	set aMonth to m - cm
+	set aDay to d - cd
 
 	if aDay is less than 0 then
 		set aDay to aDay + daysinmonth(theDate)
