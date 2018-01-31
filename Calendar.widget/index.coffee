@@ -50,7 +50,6 @@ style: """
   width 176px
   height auto
   overflow hidden
-  background-color bgColor02
 
   .wrapper
     height 100%

@@ -37,7 +37,6 @@ style: """
   overflow hidden
   white-space nowrap
   opacity 0
-  background-color bgColor02
   font-size 8pt
   line-height @font-size
 

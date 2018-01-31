@@ -32,8 +32,7 @@ render: (output) ->
     }
     .widget {
       position: relative;
-      background-color: rgba(0,0,0,.2);
-      -webkit-backdrop-filter: blur(30px) brightness(80%) contrast(100%) saturate(140%);
+      background-color: rgba(0,0,0,.75);
       margin-top: 1px;
     }
 
