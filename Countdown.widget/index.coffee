@@ -2,18 +2,32 @@
 # I stole from so many I can't remember who you are, thank you so much everyone!
 # Haphazardly adjusted and mangled by Pe8er (https://github.com/Pe8er)
 
+# Countdown code taken from https://github.com/anuragbakshi/Countdown-Widget
+
 options =
   # Easily enable or disable the widget.
   widgetEnable: true
 
-  # Set the start date to count from.
-  theDate: "03/30/2018"
+  # Add more countdowns
+  countdowns: [
+    # {
+    #   label: "Example"
+    #   time: "Feb 2, 2018 13:35:00"
+    # },
+    {
+      label: ""
+      time: "Mar 30, 2018"
+    },
+  ]
 
-  title: ""
+MILLIS_IN_DAY: 24 * 60 * 60 * 1000
+MILLIS_IN_HOUR: 60 * 60 * 1000
+MILLIS_IN_MINUTE: 60 * 1000
+MILLIS_IN_SECOND: 1000
 
-command: "osascript 'Sidebar.widget/Countdown.widget/Countdown.applescript' \"#{options.theDate}\""
+command: ""
 
-refreshFrequency: '1h'
+refreshFrequency: '1m'
 
 style: """
   white1 = rgba(white,1)
@@ -28,35 +42,49 @@ style: """
   *, *:before, *:after
     box-sizing border-box
 
-  .wrapper
+  #outer
+    padding 8px
+    display flex
+    flex-direction column
+
+  .box
+    margin 3px 0
+
+  .box:first-of-type
+    margin-top 0
+
+  .box:last-of-type
+    margin-bottom 0
+
+  .countdown
     position: relative
     font-size 8pt
     line-height 11pt
     color white
-    padding 8px
     align-items center
     justify-content center
     display flex
 
-  .box
+  .time
     float left
     text-align center
     color white05
     margin 0 10px
 
-  .box span
+  .time span
     display block
 
-  .box span:first-of-type
-    font-weight 700
+  .time span:first-of-type
+    font-weight 500
     color white
 
-  #title
+  .title
+    font-weight 700
     color white
     font-size 8pt
     text-align center
     display block
-    padding-bottom 2px
+    margin-bottom 5px
 """
 
 options : options
@@ -71,21 +99,14 @@ render: (output) ->
 
   # Create the DIVs for each piece of data.
   elapsedHTML = "
-    <div>
-      <span id='title'>" + @options.title + "</span>
-      <div class='wrapper'>
-        <div class='box'>
-          <span>" + values[2] + "</span>
-          <span>" + values[3] + "</span>
-        </div>
-        <div class='box'>
-          <span>" + values[4] + "</span>
-          <span>" + values[5] + "</span>
-        </div>
-      </div>
+    <div id='outer'>
     </div>
   "
   return elapsedHTML
+
+afterRender: ->
+	for countdown in @options.countdowns
+		countdown.millis = new Date(countdown.time).getTime()
 
 # Update the rendered output.
 update: (output, domEl) ->
@@ -99,6 +120,49 @@ update: (output, domEl) ->
 
     # Initialize our HTML.
     elapsedHTML = ''
+
+    $countdownList = $(domEl).find("#outer")
+    $countdownList.empty()
+
+    now = new Date().getTime()
+
+    # $root.html new Date
+    # $root.html new Date @countdowns[1].time
+    for countdown in @options.countdowns
+      millisUntil = countdown.millis - now
+      timeUntil = {}
+
+      timeUntil.days = millisUntil // @MILLIS_IN_DAY
+      millisUntil %= @MILLIS_IN_DAY
+
+      timeUntil.hours = millisUntil // @MILLIS_IN_HOUR
+      millisUntil %= @MILLIS_IN_HOUR
+
+      timeUntil.minutes = millisUntil // @MILLIS_IN_MINUTE
+      millisUntil %= @MILLIS_IN_MINUTE
+
+      # timeUntil.seconds = millisUntil // @MILLIS_IN_SECOND
+      # millisUntil %= @MILLIS_IN_SECOND
+
+      $countdownList.append("""
+        <div class='box'>
+          <span class='title'>#{countdown.label}</span>
+          <div class='countdown'>
+            <div class='time'>
+              <span>#{timeUntil.days}</span>
+              <span>days</span>
+            </div>
+            <div class='time'>
+              <span>#{timeUntil.hours}</span>
+              <span>hours</span>
+            </div>
+            <div class='time'>
+              <span>#{timeUntil.minutes}</span>
+              <span>minutes</span>
+            </div>
+          </div>
+        </div>
+      """)
 
     # Sort out flex-box positioning.
     div.parent('div').css('order', '2')
