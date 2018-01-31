@@ -4,7 +4,7 @@
 
 options =
   # Easily enable or disable the widget.
-  widgetEnable: false
+  widgetEnable: true
 
   # Choose color theme.
   widgetTheme: "dark"                   # dark | light

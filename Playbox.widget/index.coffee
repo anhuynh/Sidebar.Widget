@@ -4,7 +4,7 @@
 
 options =
   # Easily enable or disable the widget.
-  widgetEnable: false
+  widgetEnable: true
 
 command: "osascript 'Sidebar.widget/Playbox.widget/as/Get Current Track.applescript'"
 
