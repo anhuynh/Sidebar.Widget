@@ -3,7 +3,7 @@
 
 options =
   # Easily enable or disable the widget.
-  widgetEnable:           true
+  widgetEnable:           false
 
   # Enter locations to set up world clocks. Reference - en.wikipedia.org/wiki/List_of_tz_database_time_zones
   locations   :           "US/Pacific,Europe/Warsaw"

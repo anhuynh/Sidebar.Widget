@@ -173,7 +173,7 @@ update: (output, domEl) ->
     @updateBody rows, table
 
     # Sort out flex-box positioning.
-    div.parent('div').css('order', '5')
+    div.parent('div').css('order', '1')
     div.parent('div').css('flex', '0 1 auto')
   else
     div.remove()

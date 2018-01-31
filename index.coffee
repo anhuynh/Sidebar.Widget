@@ -8,7 +8,7 @@ flexDirection   : 'column-reverse'        # default: 'row'
 justifyContent  : 'flex-start' # default: 'flex'-start'
 alignContent    : 'stretch'    # default: 'stretch'
 flexWrap        : 'nowrap'       # default: 'nowrap'
-alignItems      : 'flex-end'    # default: 'stretch'. 'flex-start' for left, 'flex-end' for right.
+alignItems      : 'flex-start'    # default: 'stretch'. 'flex-start' for left, 'flex-end' for right.
 refreshFrequency: false
 
 render: (output) ->

@@ -5,15 +5,15 @@
 
 options =
   widgetEnable  : true              # Easily enable or disable the widget.
-  city          : "San Francisco"   # default city in case location detection fails
-  region        : "US"              # default region in case location detection fails
+  city          : "Ottawa"   # default city in case location detection fails
+  region        : "CA"              # default region in case location detection fails
   units         : 'C'               # c for celcius. f for Fahrenheit
   staticLocation: false             # set to true to disable automatic location lookup
 
 appearance =
   iconSet       : 'original'        # "original" for the original icons
 
-refreshFrequency: '10m'             # Update every 10 minutes
+refreshFrequency: '1h'             # Update every 1 hour
 
 style: """
   white1    = rgba(white,1)
