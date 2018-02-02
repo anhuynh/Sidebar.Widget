@@ -16,7 +16,7 @@ options =
   otherMonths : true
 
   # Specify the first day of the week (Monday or Sunday)
-  firstDay    : Monday
+  firstDay    : Sunday
 
   # Choose color theme.
   widgetTheme: "dark"                   # dark | light
