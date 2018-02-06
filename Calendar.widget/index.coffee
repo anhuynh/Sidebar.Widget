@@ -66,6 +66,7 @@ style: """
   td
     text-align center
     padding 4px
+    font-weight 300
 
   thead tr
     &:first-child td
