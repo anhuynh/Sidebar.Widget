@@ -79,7 +79,7 @@ style: """
     color white
 
   .title
-    font-weight 700
+    font-weight 500
     color white
     font-size 8pt
     text-align center
